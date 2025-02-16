@@ -137,13 +137,13 @@ app_license = "mit"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
-# }
+doc_events = {
+    "Single Administrative Document": {
+        "on_submit": "customs.customs.doctype.single_administrative_document.single_administrative_document.on_submit",
+        "on_cancel": "customs.customs.doctype.single_administrative_document.single_administrative_document.on_cancel",
+        "validate": "customs.customs.doctype.single_administrative_document.single_administrative_document.validate"
+    }
+}
 
 # Scheduled Tasks
 # ---------------
