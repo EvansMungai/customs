@@ -1,0 +1,280 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:SAD-{####}",
+ "creation": "2024-02-16 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "declaration_section",
+  "declaration_number",
+  "customs_office",
+  "declaration_type",
+  "party_section",
+  "importer",
+  "importer_tin",
+  "importer_address",
+  "column_break_1",
+  "exporter",
+  "exporter_tin",
+  "exporter_address",
+  "shipment_section",
+  "country_origin",
+  "country_destination",
+  "waybill",
+  "item_details_section",
+  "items",
+  "value_section",
+  "total_value",
+  "total_weight",
+  "currency",
+  "tax_section",
+  "tax_calculation",
+  "total_duty",
+  "total_vat",
+  "total_excise",
+  "total_payable",
+  "documents_section",
+  "supporting_documents",
+  "status_section",
+  "status",
+  "workflow_state",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "declaration_section",
+   "fieldtype": "Section Break",
+   "label": "Declaration Information"
+  },
+  {
+   "fieldname": "declaration_number",
+   "fieldtype": "Data",
+   "label": "Declaration Number",
+   "unique": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "customs_office",
+   "fieldtype": "Link",
+   "label": "Customs Office",
+   "options": "Customs Office",
+   "reqd": 1
+  },
+  {
+   "fieldname": "declaration_type",
+   "fieldtype": "Select",
+   "label": "Declaration Type",
+   "options": "Import\nExport\nTransit",
+   "reqd": 1
+  },
+  {
+   "fieldname": "party_section",
+   "fieldtype": "Section Break",
+   "label": "Party Information"
+  },
+  {
+   "fieldname": "importer",
+   "fieldtype": "Link",
+   "label": "Importer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "importer_tin",
+   "fieldtype": "Data",
+   "label": "Importer TIN",
+   "reqd": 1
+  },
+  {
+   "fieldname": "importer_address",
+   "fieldtype": "Small Text",
+   "label": "Importer Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "exporter",
+   "fieldtype": "Link",
+   "label": "Exporter",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fieldname": "exporter_tin",
+   "fieldtype": "Data",
+   "label": "Exporter TIN",
+   "reqd": 1
+  },
+  {
+   "fieldname": "exporter_address",
+   "fieldtype": "Small Text",
+   "label": "Exporter Address",
+   "reqd": 1
+  },
+  {
+   "fieldname": "shipment_section",
+   "fieldtype": "Section Break",
+   "label": "Shipment Information"
+  },
+  {
+   "fieldname": "country_origin",
+   "fieldtype": "Link",
+   "label": "Country of Origin",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "fieldname": "country_destination",
+   "fieldtype": "Link",
+   "label": "Country of Destination",
+   "options": "Country",
+   "reqd": 1
+  },
+  {
+   "fieldname": "waybill",
+   "fieldtype": "Link",
+   "label": "Waybill",
+   "options": "Waybill"
+  },
+  {
+   "fieldname": "item_details_section",
+   "fieldtype": "Section Break",
+   "label": "Item Details"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "SAD Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "value_section",
+   "fieldtype": "Section Break",
+   "label": "Value Information"
+  },
+  {
+   "fieldname": "total_value",
+   "fieldtype": "Currency",
+   "label": "Total Value",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_weight",
+   "fieldtype": "Float",
+   "label": "Total Weight (kg)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tax_section",
+   "fieldtype": "Section Break",
+   "label": "Tax Information"
+  },
+  {
+   "fieldname": "tax_calculation",
+   "fieldtype": "Table",
+   "label": "Tax Calculation",
+   "options": "Tax Detail"
+  },
+  {
+   "fieldname": "total_duty",
+   "fieldtype": "Currency",
+   "label": "Total Duty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_vat",
+   "fieldtype": "Currency",
+   "label": "Total VAT",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_excise",
+   "fieldtype": "Currency",
+   "label": "Total Excise",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_payable",
+   "fieldtype": "Currency",
+   "label": "Total Payable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "documents_section",
+   "fieldtype": "Section Break",
+   "label": "Supporting Documents"
+  },
+  {
+   "fieldname": "supporting_documents",
+   "fieldtype": "Table",
+   "label": "Supporting Documents",
+   "options": "SAD Document"
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Status Information"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nSubmitted\nAssessed\nPaid\nReleased",
+   "reqd": 1
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "label": "Workflow State",
+   "options": "Workflow State"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Single Administrative Document",
+   "print_hide": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-02-16 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Customs",
+ "name": "Single Administrative Document",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
