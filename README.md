@@ -89,4 +89,4 @@ MIT License. See [license.txt](license.txt) for more information.
 
 ## Credits
 
-Developed by Bailly Rurangirwa
+Developed by [Logiic Ltd](https://www.logiic.com/)
