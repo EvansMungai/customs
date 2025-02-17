@@ -85,6 +85,11 @@ app_license = "mit"
 # before_install = "customs.install.before_install"
 # after_install = "customs.install.after_install"
 
+# Workflow
+# ------------
+workflow_states = "customs.customs.workflow.customs_workflow.get_workflow_states"
+workflow_transitions = "customs.customs.workflow.customs_workflow.get_workflow_transitions"
+
 # Uninstallation
 # ------------
 
