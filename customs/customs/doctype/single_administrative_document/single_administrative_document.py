@@ -10,7 +10,9 @@ class SingleAdministrativeDocument(Document):
     def validate(self):
         """Validate SAD document"""
         self.validate_parties()
-        self.validate_hs_code()
+        self.validate_items()
+        self.validate_documents()
+        self.calculate_totals()
         self.validate_workflow_state()
 
     def validate_workflow_state(self):
@@ -38,10 +40,30 @@ class SingleAdministrativeDocument(Document):
         if not self.exporter:
             frappe.throw("Exporter is mandatory")
     
-    def validate_hs_code(self):
-        """Validate HS code format"""
-        if self.hs_code and not len(self.hs_code) >= 6:
-            frappe.throw("HS Code must be at least 6 digits")
+    def validate_items(self):
+        """Validate items and HS codes"""
+        if not self.items:
+            frappe.throw("At least one item is required")
+        
+        for item in self.items:
+            if not len(item.hs_code) >= 6:
+                frappe.throw(f"HS Code must be at least 6 digits for item {item.item_number}")
+            if item.customs_value <= 0:
+                frappe.throw(f"Customs value must be greater than zero for item {item.item_number}")
+    
+    def validate_documents(self):
+        """Validate supporting documents"""
+        required_docs = ["Invoice", "Packing List"]
+        submitted_docs = [d.document_type for d in self.supporting_documents]
+        
+        for doc_type in required_docs:
+            if doc_type not in submitted_docs:
+                frappe.throw(f"{doc_type} is required")
+    
+    def calculate_totals(self):
+        """Calculate total values"""
+        self.total_value = sum(item.customs_value for item in self.items)
+        self.total_weight = sum(item.weight for item in self.items)
     
     def on_submit(self):
         """Handle submission"""
