@@ -7,6 +7,7 @@
  "allow_multiple": 0,
  "allow_print": 0,
  "anonymous": 1,
+ "client_script": "/assets/customs/js/user_registration_webform.js",
  "apply_document_permissions": 0,
  "button_label": "Register",
  "creation": "2024-02-16 10:00:00.000000",

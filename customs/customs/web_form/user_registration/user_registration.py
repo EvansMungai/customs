@@ -5,6 +5,16 @@ def get_context(context):
     """Add custom context for web form"""
     context.show_sidebar = False
     context.title = _("ASYCUDA World Registration")
+    context.security_terms = _("""
+        <h4>Security Terms and Conditions</h4>
+        <ol>
+            <li>Keep login credentials confidential and secure</li>
+            <li>Notify customs immediately if security is compromised</li>
+            <li>Use the system only for authorized purposes</li>
+            <li>Comply with all customs regulations and procedures</li>
+            <li>Maintain accurate and truthful documentation</li>
+        </ol>
+    """)
     
 def validate(doc):
     """Validate web form submission"""

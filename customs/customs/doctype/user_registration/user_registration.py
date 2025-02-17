@@ -64,15 +64,26 @@ class UserRegistration(Document):
         """Create Frappe user accounts for approved registration"""
         for user in self.system_users:
             if not frappe.db.exists("User", user.email):
+                # Create user
                 new_user = frappe.get_doc({
                     "doctype": "User",
                     "email": user.email,
                     "first_name": user.user_full_name.split()[0],
                     "last_name": " ".join(user.user_full_name.split()[1:]),
                     "send_welcome_email": 1,
-                    "role_profile_name": self.get_role_profile()
+                    "role_profile_name": self.get_role_profile(),
+                    "user_type": "System User",
+                    "module_profile": "Customs User"
                 })
-                new_user.insert()
+                new_user.insert(ignore_permissions=True)
+                
+                # Add user to customs role
+                role_name = self.get_role_profile()
+                if not frappe.db.exists("Has Role", {"parent": user.email, "role": role_name}):
+                    new_user.append("roles", {
+                        "role": role_name
+                    })
+                    new_user.save(ignore_permissions=True)
     
     def get_role_profile(self):
         """Get appropriate role profile based on business type"""
