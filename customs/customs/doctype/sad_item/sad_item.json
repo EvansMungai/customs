@@ -14,7 +14,12 @@
   "unit_price",
   "customs_value",
   "weight",
-  "country_origin"
+  "country_origin",
+  "tax_details_section",
+  "duty_amount",
+  "vat_amount",
+  "dc_amount",
+  "total_tax"
  ],
  "fields": [
   {
@@ -79,6 +84,35 @@
    "label": "Country of Origin",
    "options": "Country",
    "reqd": 1
+  },
+  {
+   "fieldname": "tax_details_section",
+   "fieldtype": "Section Break",
+   "label": "Tax Details"
+  },
+  {
+   "fieldname": "duty_amount",
+   "fieldtype": "Currency",
+   "label": "Duty Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vat_amount",
+   "fieldtype": "Currency",
+   "label": "VAT Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "dc_amount",
+   "fieldtype": "Currency",
+   "label": "Excise Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_tax",
+   "fieldtype": "Currency",
+   "label": "Total Tax",
+   "read_only": 1
   }
  ],
  "index_web_pages_for_search": 1,

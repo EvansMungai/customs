@@ -31,14 +31,20 @@ class SADItem(Document):
         
         # Get and apply tariff rates
         rates = get_tariff_rates(self.hs_code)
-        if rates:
-            duty_amount = (self.customs_value * rates['duty_rate']) / 100
-            vat_base = self.customs_value + duty_amount
-            vat_amount = (vat_base * rates['vat_rate']) / 100
-            dc_amount = (self.customs_value * rates['dc_rate']) / 100
+        if not rates:
+            frappe.throw(f"No tariff rates found for HS Code {self.hs_code}")
             
-            # Store calculated values
-            self.duty_amount = duty_amount
-            self.vat_amount = vat_amount
-            self.dc_amount = dc_amount
-            self.total_tax = duty_amount + vat_amount + dc_amount
+        duty_amount = (self.customs_value * rates['duty_rate']) / 100
+        vat_base = self.customs_value + duty_amount
+        vat_amount = (vat_base * rates['vat_rate']) / 100
+        dc_amount = (self.customs_value * rates['dc_rate']) / 100
+        
+        # Store calculated values
+        self.duty_amount = duty_amount
+        self.vat_amount = vat_amount
+        self.dc_amount = dc_amount
+        self.total_tax = duty_amount + vat_amount + dc_amount
+        
+        # Add description from tariff data
+        if hasattr(rates, 'designation'):
+            self.description = rates['designation']

@@ -5,13 +5,19 @@ from pathlib import Path
 
 def load_tariffs():
     """Load all tariff files from fixtures/tariffs directory"""
-    base_path = frappe.get_app_path("customs", "fixtures", "tariffs")
-    tariff_data = {}
+    cache_key = "customs_tariff_data"
+    tariff_data = frappe.cache().get_value(cache_key)
     
-    for file_path in Path(base_path).glob("*.json"):
-        with open(file_path, 'r', encoding='utf-8') as file:
-            section_data = json.load(file)
-            tariff_data[section_data['section_code']] = section_data
+    if not tariff_data:
+        base_path = frappe.get_app_path("customs", "fixtures", "tariffs")
+        tariff_data = {}
+        
+        for file_path in Path(base_path).glob("*.json"):
+            with open(file_path, 'r', encoding='utf-8') as file:
+                section_data = json.load(file)
+                tariff_data[section_data['section_code']] = section_data
+        
+        frappe.cache().set_value(cache_key, tariff_data)
     
     return tariff_data
 
