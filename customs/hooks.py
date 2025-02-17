@@ -142,6 +142,11 @@ doc_events = {
         "on_submit": "customs.customs.doctype.single_administrative_document.single_administrative_document.on_submit",
         "on_cancel": "customs.customs.doctype.single_administrative_document.single_administrative_document.on_cancel",
         "validate": "customs.customs.doctype.single_administrative_document.single_administrative_document.validate"
+    },
+    "Manifest": {
+        "on_submit": "customs.customs.doctype.manifest.manifest.on_submit",
+        "on_cancel": "customs.customs.doctype.manifest.manifest.on_cancel",
+        "validate": "customs.customs.doctype.manifest.manifest.validate"
     }
 }
 

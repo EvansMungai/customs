@@ -1,0 +1,131 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:WB-{####}",
+ "creation": "2024-02-16 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "waybill_number",
+  "manifest",
+  "type_section",
+  "type",
+  "party_section",
+  "consignee",
+  "cargo_details_section",
+  "packages",
+  "weight",
+  "description",
+  "status_section",
+  "status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "waybill_number",
+   "fieldtype": "Data",
+   "label": "Waybill Number",
+   "unique": 1
+  },
+  {
+   "fieldname": "manifest",
+   "fieldtype": "Link",
+   "label": "Manifest",
+   "options": "Manifest"
+  },
+  {
+   "fieldname": "type",
+   "fieldtype": "Select",
+   "label": "Type",
+   "options": "Master\nHouse\nSub-bill",
+   "reqd": 1
+  },
+  {
+   "fieldname": "consignee",
+   "fieldtype": "Link",
+   "label": "Consignee",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "packages",
+   "fieldtype": "Int",
+   "label": "Packages",
+   "reqd": 1
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Cargo Description"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Draft\nApproved\nLinked to SAD",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Waybill",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "type_section",
+   "fieldtype": "Section Break",
+   "label": "Type Information"
+  },
+  {
+   "fieldname": "party_section",
+   "fieldtype": "Section Break",
+   "label": "Party Details"
+  },
+  {
+   "fieldname": "cargo_details_section",
+   "fieldtype": "Section Break",
+   "label": "Cargo Details"
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Status"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-02-16 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Customs",
+ "name": "Waybill",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
