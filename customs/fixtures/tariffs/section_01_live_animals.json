@@ -28,19 +28,156 @@
                   "dc": 0
                 }
               ]
-            },
+            }
+          ]
+        },
+        {
+          "tariff_position": "01.02",
+          "description": "Animaux vivants de l'espèce bovine",
+          "categories": [
             {
-              "type": "Ânes",
+              "type": "Bovins domestiques",
               "subcategories": [
                 {
-                  "code": "0101.30.10",
+                  "code": "0102.21.00",
                   "designation": "Reproducteurs de race pure",
                   "duty": 5,
                   "vat": 16,
                   "dc": 0
                 },
                 {
-                  "code": "0101.30.90",
+                  "code": "0102.29.00",
+                  "designation": "Autres",
+                  "duty": 10,
+                  "vat": 16,
+                  "dc": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": "Viandes et Abats Comestibles",
+      "chapter_code": "02",
+      "tariffs": [
+        {
+          "tariff_position": "02.01",
+          "description": "Viandes des animaux de l'espèce bovine, fraîches ou réfrigérées",
+          "categories": [
+            {
+              "type": "Boeuf",
+              "subcategories": [
+                {
+                  "code": "0201.10.00",
+                  "designation": "En carcasses ou demi-carcasses",
+                  "duty": 10,
+                  "vat": 16,
+                  "dc": 0
+                },
+                {
+                  "code": "0201.20.00",
+                  "designation": "Autres morceaux non désossés",
+                  "duty": 10,
+                  "vat": 16,
+                  "dc": 0
+                },
+                {
+                  "code": "0201.30.00",
+                  "designation": "Désossées",
+                  "duty": 10,
+                  "vat": 16,
+                  "dc": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": "Poissons et Crustacés, Mollusques et Autres Invertébrés Aquatiques",
+      "chapter_code": "03",
+      "tariffs": [
+        {
+          "tariff_position": "03.01",
+          "description": "Poissons vivants",
+          "categories": [
+            {
+              "type": "Poissons d'ornement",
+              "subcategories": [
+                {
+                  "code": "0301.11.00",
+                  "designation": "D'eau douce",
+                  "duty": 20,
+                  "vat": 16,
+                  "dc": 0
+                },
+                {
+                  "code": "0301.19.00",
+                  "designation": "Autres",
+                  "duty": 20,
+                  "vat": 16,
+                  "dc": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": "Lait et Produits de la Laiterie; Œufs d'Oiseaux; Miel Naturel",
+      "chapter_code": "04",
+      "tariffs": [
+        {
+          "tariff_position": "04.01",
+          "description": "Lait et crème, non concentrés ni additionnés de sucre ou d'autres édulcorants",
+          "categories": [
+            {
+              "type": "Lait frais",
+              "subcategories": [
+                {
+                  "code": "0401.10.10",
+                  "designation": "En récipients de 2L ou moins",
+                  "duty": 10,
+                  "vat": 16,
+                  "dc": 0
+                },
+                {
+                  "code": "0401.10.90",
+                  "designation": "Autres",
+                  "duty": 10,
+                  "vat": 16,
+                  "dc": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": "Autres Produits d'Origine Animale Non Dénommés Ni Compris Ailleurs",
+      "chapter_code": "05",
+      "tariffs": [
+        {
+          "tariff_position": "05.01",
+          "description": "Cheveux humains, bruts, lavés ou non, y compris les déchets",
+          "categories": [
+            {
+              "type": "Cheveux humains",
+              "subcategories": [
+                {
+                  "code": "0501.00.10",
+                  "designation": "Bruts",
+                  "duty": 5,
+                  "vat": 16,
+                  "dc": 0
+                },
+                {
+                  "code": "0501.00.90",
                   "designation": "Autres",
                   "duty": 10,
                   "vat": 16,
