@@ -61,9 +61,15 @@ class SingleAdministrativeDocument(Document):
                 frappe.throw(f"{doc_type} is required")
     
     def calculate_totals(self):
-        """Calculate total values"""
+        """Calculate total values including taxes"""
         self.total_value = sum(item.customs_value for item in self.items)
         self.total_weight = sum(item.weight for item in self.items)
+        
+        # Calculate tax totals
+        self.total_duty = sum(item.duty_amount for item in self.items)
+        self.total_vat = sum(item.vat_amount for item in self.items)
+        self.total_excise = sum(item.dc_amount for item in self.items)
+        self.total_payable = self.total_duty + self.total_vat + self.total_excise
     
     def on_submit(self):
         """Handle submission"""

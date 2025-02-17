@@ -1,0 +1,56 @@
+{
+  "section": "ANIMAUX VIVANTS ET PRODUITS DU REGNE ANIMAL",
+  "section_code": "01",
+  "chapters": [
+    {
+      "chapter": "Animaux Vivants",
+      "chapter_code": "01",
+      "tariffs": [
+        {
+          "tariff_position": "01.01",
+          "description": "Chevaux, ânes, mulets et bardots, vivants",
+          "categories": [
+            {
+              "type": "Chevaux",
+              "subcategories": [
+                {
+                  "code": "0101.21.00",
+                  "designation": "Reproducteurs de race pure",
+                  "duty": 5,
+                  "vat": 16,
+                  "dc": 0
+                },
+                {
+                  "code": "0101.29.00",
+                  "designation": "Autres",
+                  "duty": 10,
+                  "vat": 16,
+                  "dc": 0
+                }
+              ]
+            },
+            {
+              "type": "Ânes",
+              "subcategories": [
+                {
+                  "code": "0101.30.10",
+                  "designation": "Reproducteurs de race pure",
+                  "duty": 5,
+                  "vat": 16,
+                  "dc": 0
+                },
+                {
+                  "code": "0101.30.90",
+                  "designation": "Autres",
+                  "duty": 10,
+                  "vat": 16,
+                  "dc": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
