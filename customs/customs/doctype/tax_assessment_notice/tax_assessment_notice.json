@@ -1,0 +1,123 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:TAN-{####}",
+ "creation": "2024-02-16 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "declaration_section",
+  "declaration_number",
+  "tax_details_section",
+  "duty_rate",
+  "vat_rate",
+  "excise_tax",
+  "column_break_1",
+  "total_tax_due",
+  "currency",
+  "status_section",
+  "status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "declaration_number",
+   "fieldtype": "Link",
+   "label": "Declaration Number",
+   "options": "Single Administrative Document",
+   "reqd": 1
+  },
+  {
+   "fieldname": "duty_rate",
+   "fieldtype": "Percent",
+   "label": "Import Duty Rate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vat_rate",
+   "fieldtype": "Percent",
+   "label": "VAT Rate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "excise_tax",
+   "fieldtype": "Percent",
+   "label": "Excise Tax"
+  },
+  {
+   "fieldname": "total_tax_due",
+   "fieldtype": "Currency",
+   "label": "Total Tax Due",
+   "reqd": 1
+  },
+  {
+   "default": "Generated",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Generated\nPaid",
+   "reqd": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Link",
+   "label": "Currency",
+   "options": "Currency",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Tax Assessment Notice",
+   "print_hide": 1
+  },
+  {
+   "fieldname": "declaration_section",
+   "fieldtype": "Section Break",
+   "label": "Declaration Information"
+  },
+  {
+   "fieldname": "tax_details_section",
+   "fieldtype": "Section Break",
+   "label": "Tax Details"
+  },
+  {
+   "fieldname": "status_section",
+   "fieldtype": "Section Break",
+   "label": "Status"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-02-16 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Customs",
+ "name": "Tax Assessment Notice",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

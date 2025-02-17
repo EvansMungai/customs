@@ -147,6 +147,11 @@ doc_events = {
         "on_submit": "customs.customs.doctype.manifest.manifest.on_submit",
         "on_cancel": "customs.customs.doctype.manifest.manifest.on_cancel",
         "validate": "customs.customs.doctype.manifest.manifest.validate"
+    },
+    "Tax Assessment Notice": {
+        "on_submit": "customs.customs.doctype.tax_assessment_notice.tax_assessment_notice.on_submit",
+        "on_cancel": "customs.customs.doctype.tax_assessment_notice.tax_assessment_notice.on_cancel",
+        "validate": "customs.customs.doctype.tax_assessment_notice.tax_assessment_notice.validate"
     }
 }
 
