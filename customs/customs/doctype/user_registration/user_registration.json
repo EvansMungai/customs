@@ -1,0 +1,178 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:REG-{####}",
+ "creation": "2024-02-16 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "applicant_section",
+  "trader_type",
+  "business_type",
+  "business_details_section",
+  "full_name",
+  "business_id",
+  "telephone",
+  "users_section",
+  "system_users",
+  "agreement_section",
+  "terms_agreement",
+  "applicant_name",
+  "application_date",
+  "company_stamp",
+  "approval_section",
+  "approval_status",
+  "rejection_reason",
+  "approved_by",
+  "approval_date",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "applicant_section",
+   "fieldtype": "Section Break",
+   "label": "Identification Details"
+  },
+  {
+   "fieldname": "trader_type",
+   "fieldtype": "Select",
+   "label": "Type of Trader",
+   "options": "Individual\nCompany\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "business_type",
+   "fieldtype": "Select",
+   "label": "Type of Business",
+   "options": "Importer/Exporter\nClearing Agent/Broker\nShipping Agent/Airline Agent/Transporter\nFreight Forwarder",
+   "reqd": 1
+  },
+  {
+   "fieldname": "business_details_section",
+   "fieldtype": "Section Break",
+   "label": "Business Identity"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "label": "Full Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "business_id",
+   "fieldtype": "Data",
+   "label": "Business ID/TIN",
+   "reqd": 1
+  },
+  {
+   "fieldname": "telephone",
+   "fieldtype": "Data",
+   "label": "Telephone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "users_section",
+   "fieldtype": "Section Break",
+   "label": "System Users"
+  },
+  {
+   "fieldname": "system_users",
+   "fieldtype": "Table",
+   "label": "System Users",
+   "options": "System User Detail",
+   "reqd": 1
+  },
+  {
+   "fieldname": "agreement_section",
+   "fieldtype": "Section Break",
+   "label": "Security Agreement"
+  },
+  {
+   "default": "0",
+   "fieldname": "terms_agreement",
+   "fieldtype": "Check",
+   "label": "I agree to the security terms and conditions",
+   "reqd": 1
+  },
+  {
+   "fieldname": "applicant_name",
+   "fieldtype": "Data",
+   "label": "Applicant's Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "application_date",
+   "fieldtype": "Date",
+   "label": "Application Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company_stamp",
+   "fieldtype": "Attach",
+   "label": "Company Stamp"
+  },
+  {
+   "fieldname": "approval_section",
+   "fieldtype": "Section Break",
+   "label": "Official Use Only"
+  },
+  {
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "label": "Approval Status",
+   "options": "Pending\nApproved\nRejected"
+  },
+  {
+   "depends_on": "eval:doc.approval_status=='Rejected'",
+   "fieldname": "rejection_reason",
+   "fieldtype": "Text Editor",
+   "label": "Rejection Reason"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Date",
+   "label": "Approval Date"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "User Registration",
+   "print_hide": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-02-16 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Customs",
+ "name": "User Registration",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
