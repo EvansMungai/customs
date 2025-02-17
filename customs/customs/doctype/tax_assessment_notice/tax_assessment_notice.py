@@ -31,10 +31,28 @@ class TaxAssessmentNotice(Document):
     
     def calculate_total_tax(self):
         """Calculate total tax due"""
-        # This is a placeholder for the actual tax calculation logic
-        # In a real implementation, this would fetch values from the SAD
-        # and apply the appropriate tax rates
-        pass
+        if not self.declaration_number:
+            return
+        
+        sad = frappe.get_doc("Single Administrative Document", self.declaration_number)
+        
+        # Get the customs value from SAD (assuming it's stored in a field called customs_value)
+        customs_value = sad.get("customs_value", 0)
+        
+        # Calculate duties
+        duty_amount = (customs_value * self.duty_rate) / 100
+        
+        # Calculate VAT on (customs value + duty)
+        vat_base = customs_value + duty_amount
+        vat_amount = (vat_base * self.vat_rate) / 100
+        
+        # Calculate excise if applicable
+        excise_amount = 0
+        if self.excise_tax:
+            excise_amount = (customs_value * self.excise_tax) / 100
+        
+        # Set total tax due
+        self.total_tax_due = duty_amount + vat_amount + excise_amount
     
     def on_submit(self):
         """Handle submission"""

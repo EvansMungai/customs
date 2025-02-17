@@ -152,6 +152,11 @@ doc_events = {
         "on_submit": "customs.customs.doctype.tax_assessment_notice.tax_assessment_notice.on_submit",
         "on_cancel": "customs.customs.doctype.tax_assessment_notice.tax_assessment_notice.on_cancel",
         "validate": "customs.customs.doctype.tax_assessment_notice.tax_assessment_notice.validate"
+    },
+    "Cargo Release Order": {
+        "on_submit": "customs.customs.doctype.cargo_release_order.cargo_release_order.on_submit",
+        "on_cancel": "customs.customs.doctype.cargo_release_order.cargo_release_order.on_cancel",
+        "validate": "customs.customs.doctype.cargo_release_order.cargo_release_order.validate"
     }
 }
 
