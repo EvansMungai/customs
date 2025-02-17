@@ -1,0 +1,107 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:role_name",
+ "creation": "2024-02-16 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "role_name",
+  "role_type",
+  "permissions_section",
+  "can_submit_declaration",
+  "can_submit_manifest",
+  "can_assess_duties",
+  "can_approve_release",
+  "can_inspect_cargo",
+  "can_override_decisions",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "role_name",
+   "fieldtype": "Data",
+   "label": "Role Name",
+   "unique": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "role_type",
+   "fieldtype": "Select",
+   "label": "Role Type",
+   "options": "External\nInternal",
+   "reqd": 1
+  },
+  {
+   "fieldname": "permissions_section",
+   "fieldtype": "Section Break",
+   "label": "Permissions"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_submit_declaration",
+   "fieldtype": "Check",
+   "label": "Can Submit Declaration"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_submit_manifest",
+   "fieldtype": "Check",
+   "label": "Can Submit Manifest"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_assess_duties",
+   "fieldtype": "Check",
+   "label": "Can Assess Duties"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_approve_release",
+   "fieldtype": "Check",
+   "label": "Can Approve Release"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_inspect_cargo",
+   "fieldtype": "Check",
+   "label": "Can Inspect Cargo"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_override_decisions",
+   "fieldtype": "Check",
+   "label": "Can Override Decisions"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text Editor",
+   "label": "Description"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2024-02-16 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Customs",
+ "name": "Customs Role",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
