@@ -1,5 +1,4 @@
 import frappe
-from frappe.model.workflow import add_workflow
 
 def get_workflow_states():
     """Define workflow states for customs documents"""
@@ -54,13 +53,19 @@ def get_workflow_transitions():
 def create_customs_workflow():
     """Create the Customs workflow if it doesn't exist"""
     if not frappe.db.exists('Workflow', 'Customs Declaration Process'):
-        workflow = {
-            'name': 'Customs Declaration Process',
-            'document_type': 'Single Administrative Document',
-            'workflow_state_field': 'workflow_state',
-            'is_active': 1,
-            'send_email_alert': 1,
-            'states': get_workflow_states(),
-            'transitions': get_workflow_transitions()
-        }
-        add_workflow(workflow)
+        workflow = frappe.new_doc('Workflow')
+        workflow.name = 'Customs Declaration Process'
+        workflow.document_type = 'Single Administrative Document'
+        workflow.workflow_state_field = 'workflow_state'
+        workflow.is_active = 1
+        workflow.send_email_alert = 1
+        
+        # Add states
+        for state in get_workflow_states():
+            workflow.append('states', state)
+            
+        # Add transitions
+        for transition in get_workflow_transitions():
+            workflow.append('transitions', transition)
+            
+        workflow.insert(ignore_permissions=True)
