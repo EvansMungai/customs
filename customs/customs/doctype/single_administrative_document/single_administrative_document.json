@@ -148,8 +148,10 @@
    "fieldname": "hs_code_search",
    "fieldtype": "Data",
    "label": "Search HS Code/Description",
-   "description": "Type to search for items by HS code or description",
-   "fieldname": "items",
+   "description": "Type to search for items by HS code or description"
+   },
+   {
+    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
    "options": "SAD Item",
