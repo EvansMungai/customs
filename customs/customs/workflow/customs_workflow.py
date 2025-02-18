@@ -101,5 +101,5 @@ def create_customs_workflow():
         try:
             workflow.insert(ignore_permissions=True)
         except Exception as e:
-            frappe.log_error(f"Failed to create workflow: {str(e)}")
+            frappe.log_error("Workflow creation failed", str(e))
             raise
