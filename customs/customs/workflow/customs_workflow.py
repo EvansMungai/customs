@@ -53,23 +53,6 @@ def get_workflow_transitions():
 def create_customs_workflow():
     """Create the Customs workflow if it doesn't exist"""
     if not frappe.db.exists('Workflow', 'Customs Declaration Process'):
-        # First create workflow states
-        states = []
-        for state_data in get_workflow_states():
-            state = frappe.new_doc('Workflow Document State')
-            state.update(state_data)
-            state.insert(ignore_permissions=True)
-            states.append(state)
-
-        # Create workflow transitions
-        transitions = []
-        for transition_data in get_workflow_transitions():
-            transition = frappe.new_doc('Workflow Transition')
-            transition.update(transition_data)
-            transition.insert(ignore_permissions=True)
-            transitions.append(transition)
-
-        # Create the workflow
         workflow = frappe.new_doc('Workflow')
         workflow.name = 'Customs Declaration Process'
         workflow.document_type = 'Single Administrative Document'
@@ -77,16 +60,23 @@ def create_customs_workflow():
         workflow.is_active = 1
         workflow.send_email_alert = 1
         
-        # Link states and transitions
-        for state in states:
-            workflow.append('states', {'state': state.name, 'doc_status': state.doc_status})
+        # Add states directly
+        for state in get_workflow_states():
+            workflow.append('states', {
+                'state': state['state'],
+                'doc_status': state['doc_status'],
+                'allow_edit': 'System Manager'
+            })
             
-        for transition in transitions:
+        # Add transitions directly
+        for transition in get_workflow_transitions():
             workflow.append('transitions', {
-                'state': transition.state,
-                'action': transition.action,
-                'next_state': transition.next_state,
-                'allowed': transition.allowed
+                'state': transition['state'],
+                'action': transition['action'],
+                'next_state': transition['next_state'],
+                'allowed': transition['allowed'],
+                'allow_self_approval': 1,
+                'condition': transition.get('condition', '')
             })
             
         workflow.insert(ignore_permissions=True)
