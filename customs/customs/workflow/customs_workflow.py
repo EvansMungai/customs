@@ -70,6 +70,14 @@ def create_customs_workflow():
             ws.style = 'Primary'
             ws.insert(ignore_permissions=True)
 
+    # Create workflow actions if they don't exist
+    actions = ['Submit', 'Assess', 'Mark Paid', 'Release', 'Cancel']
+    for action in actions:
+        if not frappe.db.exists('Workflow Action Master', action):
+            wa = frappe.new_doc('Workflow Action Master')
+            wa.workflow_action_name = action
+            wa.insert(ignore_permissions=True)
+
     # Create the workflow if it doesn't exist
     if not frappe.db.exists('Workflow', 'Customs Declaration Process'):
         workflow = frappe.new_doc('Workflow')
