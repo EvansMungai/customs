@@ -37,10 +37,9 @@
   },
   {
    "fieldname": "hs_code",
-   "fieldtype": "Link",
+   "fieldtype": "Data",
    "in_list_view": 1,
    "label": "HS Code",
-   "options": "HS Code",
    "reqd": 1,
    "description": "Selected HS code"
   },
