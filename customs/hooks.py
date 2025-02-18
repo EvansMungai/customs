@@ -5,7 +5,15 @@ app_description = "A configurable Customs Declaration Processing module for Frap
 app_email = "rubailly@gmail.com"
 app_license = "mit"
 
+required_apps = ["frappe"]
+
 after_install = "customs.customs.workflow.customs_workflow.create_customs_workflow"
+
+# Default roles that should be created
+default_roles = [
+    {"role": "Customs Broker", "desk_access": 1},
+    {"role": "Customs Officer", "desk_access": 1}
+]
 
 # Apps
 # ------------------

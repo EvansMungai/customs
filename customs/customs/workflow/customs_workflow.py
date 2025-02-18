@@ -52,18 +52,28 @@ def get_workflow_transitions():
 
 def create_customs_workflow():
     """Create the Customs workflow if it doesn't exist"""
-    if not frappe.db.exists('Workflow', 'Customs Declaration Process'):
-        # First create workflow states in the database
-        for state in get_workflow_states():
-            if not frappe.db.exists('Workflow State', state['state']):
-                ws = frappe.new_doc('Workflow State')
-                ws.workflow_state_name = state['state']
-                ws.style = ''
-                ws.insert(ignore_permissions=True)
+    # Create required roles if they don't exist
+    required_roles = ['Customs Broker', 'Customs Officer']
+    for role in required_roles:
+        if not frappe.db.exists('Role', role):
+            new_role = frappe.new_doc('Role')
+            new_role.role_name = role
+            new_role.desk_access = 1
+            new_role.insert(ignore_permissions=True)
 
-        # Create the workflow
+    # Create workflow states if they don't exist
+    for state in get_workflow_states():
+        state_name = state['state']
+        if not frappe.db.exists('Workflow State', state_name):
+            ws = frappe.new_doc('Workflow State')
+            ws.workflow_state_name = state_name
+            ws.style = 'Primary'
+            ws.insert(ignore_permissions=True)
+
+    # Create the workflow if it doesn't exist
+    if not frappe.db.exists('Workflow', 'Customs Declaration Process'):
         workflow = frappe.new_doc('Workflow')
-        workflow.name = 'Customs Declaration Process'
+        workflow.workflow_name = 'Customs Declaration Process'
         workflow.document_type = 'Single Administrative Document'
         workflow.workflow_state_field = 'workflow_state'
         workflow.is_active = 1
@@ -88,4 +98,8 @@ def create_customs_workflow():
                 'condition': transition.get('condition', '')
             })
             
-        workflow.insert(ignore_permissions=True)
+        try:
+            workflow.insert(ignore_permissions=True)
+        except Exception as e:
+            frappe.log_error(f"Failed to create workflow: {str(e)}")
+            raise
