@@ -31,10 +31,11 @@
   },
   {
    "fieldname": "hs_code",
-   "fieldtype": "Data",
+   "fieldtype": "Autocomplete",
    "in_list_view": 1,
    "label": "HS Code",
-   "reqd": 1
+   "reqd": 1,
+   "description": "Start typing HS code or description to search"
   },
   {
    "fieldname": "description",
