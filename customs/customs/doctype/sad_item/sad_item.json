@@ -30,12 +30,19 @@
    "reqd": 1
   },
   {
+   "fieldname": "hs_code_search",
+   "fieldtype": "Data",
+   "label": "Search HS Code/Description",
+   "description": "Type to search by HS code or product description"
+  },
+  {
    "fieldname": "hs_code",
-   "fieldtype": "Autocomplete",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "label": "HS Code",
+   "options": "HS Code",
    "reqd": 1,
-   "description": "Start typing HS code or description to search"
+   "description": "Selected HS code"
   },
   {
    "fieldname": "description",
