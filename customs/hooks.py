@@ -5,6 +5,8 @@ app_description = "A configurable Customs Declaration Processing module for Frap
 app_email = "rubailly@gmail.com"
 app_license = "mit"
 
+after_install = "customs.customs.workflow.customs_workflow.create_customs_workflow"
+
 # Apps
 # ------------------
 
