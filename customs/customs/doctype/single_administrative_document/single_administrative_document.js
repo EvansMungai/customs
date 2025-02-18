@@ -4,7 +4,7 @@ frappe.ui.form.on('Single Administrative Document', {
             frappe.call({
                 method: 'customs.customs.api.tariff.search_hs_codes',
                 args: {
-                    'search_text': row.hs_code_search
+                    'search_text': frm.doc.hs_code_search
                 },
                 callback: function(r) {
                     if (r.message && r.message.length > 0) {
