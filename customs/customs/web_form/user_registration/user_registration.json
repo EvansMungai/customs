@@ -97,7 +97,46 @@
    "options": "System User Detail",
    "read_only": 0,
    "reqd": 1,
-   "show_in_filter": 0
+   "show_in_filter": 0,
+   "in_list_view": 1,
+   "allow_bulk_edit": 1,
+   "fields": [
+     {
+       "fieldname": "user_full_name",
+       "fieldtype": "Data",
+       "in_list_view": 1,
+       "label": "User Full Name",
+       "reqd": 1
+     },
+     {
+       "fieldname": "job_title",
+       "fieldtype": "Data",
+       "in_list_view": 1,
+       "label": "Job Title",
+       "reqd": 1
+     },
+     {
+       "fieldname": "email",
+       "fieldtype": "Data",
+       "in_list_view": 1,
+       "label": "Email",
+       "reqd": 1
+     },
+     {
+       "fieldname": "telephone",
+       "fieldtype": "Data",
+       "in_list_view": 1,
+       "label": "Telephone",
+       "reqd": 1
+     },
+     {
+       "fieldname": "company",
+       "fieldtype": "Data",
+       "in_list_view": 1,
+       "label": "Company",
+       "reqd": 1
+     }
+   ]
   },
   {
    "default": "0",
