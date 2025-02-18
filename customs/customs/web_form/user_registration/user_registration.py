@@ -4,7 +4,7 @@ from frappe import _
 def get_context(context):
     """Add custom context for web form"""
     context.show_sidebar = False
-    context.title = _("ASYCUDA World Registration")
+    context.title = _("Customs System Registration")
     context.security_terms = _("""
         <h4>Security Terms and Conditions</h4>
         <ol>
