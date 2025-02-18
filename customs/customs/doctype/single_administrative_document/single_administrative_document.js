@@ -1,7 +1,6 @@
-frappe.ui.form.on('SAD Item', {
-    hs_code_search: function(frm, cdt, cdn) {
-        let row = locals[cdt][cdn];
-        if (row.hs_code_search) {
+frappe.ui.form.on('Single Administrative Document', {
+    hs_code_search: function(frm) {
+        if (frm.doc.hs_code_search) {
             frappe.call({
                 method: 'customs.customs.api.tariff.search_hs_codes',
                 args: {
@@ -45,13 +44,18 @@ frappe.ui.form.on('SAD Item', {
                         // Handle row click
                         d.$wrapper.find('.hs-code-row').click(function() {
                             let item = JSON.parse($(this).attr('data-item'));
-                            frappe.model.set_value(cdt, cdn, {
+                            // Add a new row to the items table
+                            let new_row = frappe.model.add_child(frm.doc, 'SAD Item', 'items');
+                            frappe.model.set_value(new_row.doctype, new_row.name, {
                                 'hs_code': item.hs_code,
                                 'description': item.description,
                                 'duty_rate': item.duty,
                                 'vat_rate': item.vat,
                                 'dc_rate': item.dc
                             });
+                            frm.refresh_field('items');
+                            // Clear the search field
+                            frm.set_value('hs_code_search', '');
                             d.hide();
                         });
                         
@@ -60,5 +64,9 @@ frappe.ui.form.on('SAD Item', {
                 }
             });
         }
+    },
+    refresh: function(frm) {
+        // Set focus to search box
+        frm.set_df_property('hs_code_search', 'description', 'Type to search, then click an item to add it to the list below');
     }
 });
