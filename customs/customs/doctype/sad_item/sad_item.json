@@ -52,10 +52,10 @@
   },
   {
    "fieldname": "unit",
-   "fieldtype": "Link",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Unit",
-   "options": "UOM",
+   "options": "KG\nPCS\nM\nM2\nM3\nL\nPAIR\nSET",
    "reqd": 1
   },
   {
