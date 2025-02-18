@@ -53,6 +53,15 @@ def get_workflow_transitions():
 def create_customs_workflow():
     """Create the Customs workflow if it doesn't exist"""
     if not frappe.db.exists('Workflow', 'Customs Declaration Process'):
+        # First create workflow states in the database
+        for state in get_workflow_states():
+            if not frappe.db.exists('Workflow State', state['state']):
+                ws = frappe.new_doc('Workflow State')
+                ws.workflow_state_name = state['state']
+                ws.style = ''
+                ws.insert(ignore_permissions=True)
+
+        # Create the workflow
         workflow = frappe.new_doc('Workflow')
         workflow.name = 'Customs Declaration Process'
         workflow.document_type = 'Single Administrative Document'
@@ -60,7 +69,7 @@ def create_customs_workflow():
         workflow.is_active = 1
         workflow.send_email_alert = 1
         
-        # Add states directly
+        # Add states
         for state in get_workflow_states():
             workflow.append('states', {
                 'state': state['state'],
@@ -68,7 +77,7 @@ def create_customs_workflow():
                 'allow_edit': 'System Manager'
             })
             
-        # Add transitions directly
+        # Add transitions
         for transition in get_workflow_transitions():
             workflow.append('transitions', {
                 'state': transition['state'],
