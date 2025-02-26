@@ -1,25 +1,40 @@
 import frappe
-from customs.customs.utils.tariff_loader import load_tariffs
+import json
+import os
+from frappe.utils import cstr
 
 @frappe.whitelist()
 def search_hs_codes(search_text):
-    """Search HS codes and descriptions"""
-    tariff_data = load_tariffs()
+    """Search HS codes and descriptions from tariff data"""
     results = []
+    search_text = cstr(search_text).lower()
     
-    for section in tariff_data.values():
-        for chapter in section['chapters']:
-            for tariff in chapter['tariffs']:
-                for category in tariff['categories']:
-                    for subcat in category['subcategories']:
-                        if (search_text.lower() in subcat['code'].lower() or 
-                            search_text.lower() in subcat['designation'].lower()):
-                            results.append({
-                                'hs_code': subcat['code'],
-                                'description': subcat['designation'],
-                                'duty': subcat['duty'],
-                                'vat': subcat['vat'],
-                                'dc': subcat['dc']
-                            })
+    # Load tariff data
+    fixtures_path = os.path.join(os.path.dirname(__file__), '..', '..', 'fixtures', 'tariffs')
     
-    return results[:10]  # Limit to 10 results
+    # Search through all tariff files
+    for filename in os.listdir(fixtures_path):
+        if filename.endswith('.json'):
+            with open(os.path.join(fixtures_path, filename)) as f:
+                section_data = json.load(f)
+                
+                # Search through chapters
+                for chapter in section_data.get('chapters', []):
+                    for tariff in chapter.get('tariffs', []):
+                        for category in tariff.get('categories', []):
+                            for subcategory in category.get('subcategories', []):
+                                if (search_text in subcategory['code'].lower() or 
+                                    search_text in subcategory['designation'].lower()):
+                                    results.append({
+                                        'hs_code': subcategory['code'],
+                                        'description': subcategory['designation'],
+                                        'duty': subcategory['duty'],
+                                        'vat': subcategory['vat'],
+                                        'dc': subcategory['dc']
+                                    })
+                                    
+                                # Limit results to avoid performance issues
+                                if len(results) >= 20:
+                                    return results
+    
+    return results
