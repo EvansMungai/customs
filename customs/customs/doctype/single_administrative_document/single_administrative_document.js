@@ -15,28 +15,41 @@ frappe.ui.form.on('Single Administrative Document', {
                                 fieldtype: 'HTML',
                                 fieldname: 'results',
                                 options: `
-                                    <div style="max-height: 300px; overflow-y: auto;">
+                                    <div style="max-height: 400px; overflow-y: auto;">
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>HS Code</th>
                                                     <th>Description</th>
+                                                    <th>Category</th>
                                                     <th>Duty</th>
                                                     <th>VAT</th>
+                                                    <th>Excise</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 ${r.message.map(item => `
-                                                    <tr class="hs-code-row" data-item='${JSON.stringify(item)}'>
-                                                        <td>${item.hs_code}</td>
-                                                        <td>${item.description}</td>
-                                                        <td>${item.duty}%</td>
-                                                        <td>${item.vat}%</td>
+                                                    <tr class="hs-code-row clickable" data-item='${JSON.stringify(item)}'>
+                                                        <td><strong>${item.hs_code}</strong></td>
+                                                        <td>
+                                                            <div><strong>${item.description}</strong></div>
+                                                            <small class="text-muted">${item.category_type || ''}</small>
+                                                        </td>
+                                                        <td>${item.chapter || ''}</td>
+                                                        <td class="text-right">${item.duty}%</td>
+                                                        <td class="text-right">${item.vat}%</td>
+                                                        <td class="text-right">${item.dc}%</td>
                                                     </tr>
                                                 `).join('')}
                                             </tbody>
                                         </table>
                                     </div>
+                                    <style>
+                                        .clickable { cursor: pointer; }
+                                        .clickable:hover { background-color: #f8f9fa; }
+                                        .text-right { text-align: right; }
+                                        .text-muted { color: #6c757d; }
+                                    </style>
                                 `
                             }]
                         });

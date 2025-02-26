@@ -5,7 +5,7 @@ from frappe.utils import cstr
 
 @frappe.whitelist()
 def search_hs_codes(search_text):
-    """Search HS codes and descriptions from tariff data"""
+    """Search tariff data comprehensively"""
     results = []
     search_text = cstr(search_text).lower()
     
@@ -20,10 +20,27 @@ def search_hs_codes(search_text):
                 
                 # Search through chapters
                 for chapter in section_data.get('chapters', []):
+                    chapter_matches = (
+                        search_text in chapter.get('chapter', '').lower() or
+                        search_text in chapter.get('chapter_code', '').lower()
+                    )
+                    
                     for tariff in chapter.get('tariffs', []):
+                        tariff_matches = (
+                            chapter_matches or
+                            search_text in tariff.get('tariff_position', '').lower() or
+                            search_text in tariff.get('description', '').lower()
+                        )
+                        
                         for category in tariff.get('categories', []):
+                            category_matches = (
+                                tariff_matches or
+                                search_text in category.get('type', '').lower()
+                            )
+                            
                             for subcategory in category.get('subcategories', []):
-                                if (search_text in subcategory['code'].lower() or 
+                                if (category_matches or
+                                    search_text in subcategory['code'].lower() or
                                     search_text in subcategory['designation'].lower()):
                                     results.append({
                                         'hs_code': subcategory['code'],
